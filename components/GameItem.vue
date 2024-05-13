@@ -1,6 +1,6 @@
 <template>
     <div class="GameItem">
-        <img :src="game.imageUrl" :alt="game.name">
+        <img :src="game.background_image" :alt="game.name">
         <div class="GameItemText">
             <h1>{{ game.name }}</h1>
             <div class="PriceTag">

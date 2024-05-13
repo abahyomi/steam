@@ -2,11 +2,13 @@
 export default defineNuxtConfig({
   devtools: { enabled: true },
 
-  modules: ["@nuxtjs/tailwindcss",
+  modules: [
     "nuxt-icon",
     '@nuxtjs/google-fonts',
     'nuxt-aos',
-    '@formkit/auto-animate/nuxt'],
+    '@formkit/auto-animate/nuxt',
+    "@nuxt/ui"
+  ],
 
   googleFonts: {
     families: {

@@ -1,9 +1,9 @@
 <template>
-    <article>
+    <article >
         <img :src="`https://picsum.photos/500/30${user.id}`" alt="">
         <div>
             <p>{{user.username}}</p>
-            <p>{{user.username}}</p>
+            <p>{{user.password}}</p>
         </div>
     </article>
 

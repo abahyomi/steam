@@ -1,5 +1,5 @@
 <template>
-    <nav >
+    <nav data-aos="fade-down" data-aos-easing="linear" data-aos-duration="800">
         <NuxtLink to="/"><img src="../public/Logo Steam.svg" alt=""></NuxtLink>
         <ul>
             <li>
@@ -17,20 +17,55 @@
         </ul>
 
         <div class="right_header">
-            <span>instalar</span>
-            <span v-if="unlogged">iniciar sesión</span>
-            <div v-else v-auto-animate class="user" @click="panelActive = !panelActive"> <div class="panel" v-if="panelActive"></div></div>
+            <UButton label="Installar" @click="isOpen = true" />
+
+            <UModal v-model="isOpen" :overlay="true">
+                <div class="p-6 flex flex-col gap-4">
+                    <h3>¿Quieres instalar Steam en tu ordenador?</h3>
+                    <div class="flex gap-4">
+                        <UButton @click="isOpen = false" class="w-36 justify-center" color="white" variant="solid">No</UButton>
+                        <UButton class="w-36 justify-center p-4 text-white" label="Show toast"
+                            @click="toast.add({ timeout: 3000, title: 'Steam instalado correctamente!' }), isOpen=false">Sí
+                        </UButton>
+                    </div>
+                </div>
+            </UModal>
+            <button v-if="!logged && !modalActive" @click="modalActive = !modalActive">
+                Iniciar sesión
+            </button>
+            <div v-else-if="!modalActive" class="user" @click="panelActive = !panelActive">
+                <Icon name="ph:user" size="1.2em" color="white" />
+            </div>
+            <div class="panel" v-show="panelActive">
+                <ul>
+                    <li class="cerrarSesion" @click="logged = !logged; panelActive = !panelActive">
+                        Cerrar sesión
+                    </li>
+                </ul>
+            </div>
+
+            <Modal v-show="modalActive" @close-modal="closeModal" />
+
         </div>
-
-        
-
     </nav>
 </template>
 
 <script setup>
-import { ref } from 'vue';
-const panelActive = ref(false);
-const unlogged = ref(false);
+import { ref } from 'vue'
+const panelActive = ref(false)
+const modalActive = ref(false)
+const logged = ref(false)
+
+
+const isOpen = ref(false)
+const toast = useToast()
+
+const closeModal = (e) => {
+    modalActive.value = false;
+    if (e == "logged") {
+        logged.value = true;
+    }
+}
 </script>
 
 
@@ -40,19 +75,20 @@ nav {
     position: sticky;
     top: 0;
     z-index: 1000;
-    background: rgba(3, 3, 18, 0.85); 
-    backdrop-filter: blur(10px); 
+    background: rgba(3, 3, 18, 0.75);
+    backdrop-filter: blur(10px);
     border-bottom: 0.5px solid #e4ebfa;
     display: flex;
     padding: 2rem 4rem;
     justify-content: space-between;
 
-    ul{
-        li{
+    ul {
+        li {
             transition: 300ms;
-            &:hover{
+
+            &:hover {
                 color: #0047FF;
-                
+
             }
         }
     }
@@ -74,14 +110,14 @@ nav {
     }
 
     .panel {
-    position: absolute;
-    top: 80px;
-    right: 0;
-    width: 300px;
-    height: 100px;
-    overflow: hidden;
-    background-color: aqua;
-}
+        position: absolute;
+        top: 80px;
+        right: 0;
+        width: 300px;
+        height: 100px;
+        overflow: hidden;
+        background-color: aqua;
+    }
 }
 
 ul {
@@ -91,6 +127,4 @@ ul {
         @apply p-4;
     }
 }
-
-
 </style>

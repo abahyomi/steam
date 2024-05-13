@@ -2,6 +2,9 @@
   <div class="body">
     <NavBar />
     <NuxtPage />
+
+
+    <UNotifications  />
   </div>
 </template>
 
@@ -12,6 +15,7 @@
 *{
  color: #fff;
  font-family: Poppins;
+object-fit: cover;
 }
 
 .body{
