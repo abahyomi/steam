@@ -19,7 +19,7 @@ import ArticleCard from '~/components/global/ArticleCard.vue';
     </div>
 
     <section data-aos="fade-down" data-aos-easing="linear" data-aos-duration="800" class="container cards-section">
-        <div class="title_noticias">
+        <div class="title">
             <h1>Noticias</h1>
             <UInput v-model="q" name="q" placeholder="Buscar en noticias..."
                 icon="i-heroicons-magnifying-glass-20-solid" autocomplete="off"
@@ -122,7 +122,7 @@ const articles = ref([
     justify-content: center;
     width: 100%;
 
-    .title_noticias {
+    .title{
         display: flex;
         justify-content: space-between;
         align-items: center;

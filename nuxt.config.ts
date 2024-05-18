@@ -2,6 +2,13 @@
 export default defineNuxtConfig({
   devtools: { enabled: true },
 
+  components: [
+    {
+      path: '~/components',
+      pathPrefix: false,
+    },
+  ],
+
   modules: [
     "nuxt-icon",
     '@nuxtjs/google-fonts',
@@ -14,6 +21,14 @@ export default defineNuxtConfig({
     families: {
       Poppins: true
     }
+  },
+
+  routeRules: { 
+    '/web/v1/**': { 
+        proxy: { 
+          to: "http://localhost:9300/web/v1/**"
+        }, 
+    } 
   }
 
 })

@@ -5,10 +5,10 @@
             <h1>{{ game.name }}</h1>
             <div class="PriceTag">
 
-                <span class="discount">{{ game.discount }}</span>
+                <span class="discount">20%</span>
                 <div class="actualPrice">
-                    <p class="smallText">{{ game.oldPrice }}</p>
-                    <h1>{{ game.price }}</h1>
+                    <p class="smallText">59.99€</p>
+                    <h1>47.99</h1>
                 </div>
 
             </div>
@@ -16,15 +16,20 @@
     </div>
 </template>
 
-<script>
-export default {
-    props: {
+<script setup>
+
+    const props = defineProps({
         game: {
             type: Object,
-            required: true
+            required: false
+        },
+        count: {
+            type: Number,
         }
-    }
-};
+    });
+    const { game } = props;
+    const { count } = props;
+
 </script>
 
 <style lang="postcss">

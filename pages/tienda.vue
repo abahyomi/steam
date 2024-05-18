@@ -5,8 +5,9 @@
             <div class="heroHead" data-aos="fade-right" data-aos-easing="linear" data-aos-duration="800">
                 <h3 class="display2 Underline">Destacados</h3>
                 <div class="heroRight">
-                    <UInput v-model="q" name="q" placeholder="Buscar en tienda..." icon="i-heroicons-magnifying-glass-20-solid"
-                        autocomplete="off" :ui="{ icon: { trailing: { pointer: '' } } }">
+                    <UInput v-model="q" name="q" placeholder="Buscar en tienda..."
+                        icon="i-heroicons-magnifying-glass-20-solid" autocomplete="off"
+                        :ui="{ icon: { trailing: { pointer: '' } } }">
                         <template #trailing>
                             <UButton v-show="q !== ''" color="gray" variant="link" icon="i-heroicons-x-mark-20-solid"
                                 :padded="false" @click="q = ''" />
@@ -21,7 +22,7 @@
                 <div class="heroText">
 
                     <div class="top">
-                        <h1 class="text-primary-500" >Ready or Not</h1>
+                        <h1 class="text-primary-500">Ready or Not</h1>
                         <p class="descPar">Ready or Not es un FPS táctico realista donde te pones en la piel de un
                             agente SWAT para completar misiones en situaciones hostiles e intensas, poniendo énfasis en
                             la comunicación del equipo, la planificación y la ejecución precisa. Ofrece personalización
@@ -48,31 +49,40 @@
                     <carrusel></carrusel>
                 </div>
             </div>
-
         </section>
 
-        <section class="games" data-aos="fade-down" data-aos-easing="linear" data-aos-duration="800">
-            <GameItem v-for="(game, index) in games" :key="index" :game="game"></GameItem>
+        <div class="games_title">
+            <div class="title">
+                <h1>Noticias</h1>
+                <UInput v-model="q" name="q" placeholder="Buscar en Tienda..."
+                    icon="i-heroicons-magnifying-glass-20-solid" autocomplete="off"
+                    :ui="{ icon: { trailing: { pointer: '' } } }">
+                    <template #trailing>
+                        <UButton v-show="q !== ''" color="gray" variant="link" icon="i-heroicons-x-mark-20-solid"
+                            :padded="false" @click="q = ''" />
+                    </template>
+                </UInput>
+            </div>
 
+        </div>
+
+        <section class="games" data-aos="fade-down" data-aos-easing="linear" data-aos-duration="800">
+            <GameItem v-for="(game, index) in data.results" :key="index" :game="game" :count="index" />
         </section>
 
 
     </div>
 </template>
 
-<script setup lang="ts">
+<script setup>
 
 const q = ref('')
 
-import { ref, onMounted } from 'vue';
-import GameItem from '../components/GameItem.vue';
+const { data } = await useFetch('https://api.rawg.io/api/games?key=2307b45a5fa04aee8510128079fc4871', {
+    lazy: true,
+    server: false
+})
 
-const games = ref([]);
-
-// onMounted(async () => {
-//     const { data } = await useFetch("https://api.rawg.io/api/games?key=2307b45a5fa04aee8510128079fc4871");
-//     games.value = data.results;
-// });
 
 // export default {
 //     components: {
