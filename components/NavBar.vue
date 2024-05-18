@@ -20,7 +20,7 @@
             <UButton label="Installar" @click="isOpen = true" />
 
             <UModal v-model="isOpen" :overlay="true">
-                <div class="p-6 flex flex-col gap-4">
+                <div class="p-6 flex flex-col gap-4 self-center">
                     <h3>¿Quieres instalar Steam en tu ordenador?</h3>
                     <div class="flex gap-4">
                         <UButton @click="isOpen = false" class="w-36 justify-center" color="white" variant="solid">No</UButton>
