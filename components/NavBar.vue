@@ -24,8 +24,8 @@
                     <h3>¿Quieres instalar Steam en tu ordenador?</h3>
                     <div class="flex gap-4">
                         <UButton @click="isOpen = false" class="w-36 justify-center" color="white" variant="solid">No</UButton>
-                        <UButton class="w-36 justify-center p-4 text-white" label="Show toast"
-                            @click="toast.add({ timeout: 3000, title: 'Steam instalado correctamente!' }), isOpen=false">Sí
+                        <UButton class="w-36 justify-center p-4 text-white" label="Sí"
+                            @click="toast.add({ timeout: 3000, title: 'Steam instalado correctamente!' }), isOpen=false">
                         </UButton>
                     </div>
                 </div>

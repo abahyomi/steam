@@ -51,38 +51,50 @@
             </div>
         </section>
 
-        <div class="games_title">
-            <div class="title">
-                <h1>Noticias</h1>
-                <UInput v-model="q" name="q" placeholder="Buscar en Tienda..."
-                    icon="i-heroicons-magnifying-glass-20-solid" autocomplete="off"
-                    :ui="{ icon: { trailing: { pointer: '' } } }">
-                    <template #trailing>
-                        <UButton v-show="q !== ''" color="gray" variant="link" icon="i-heroicons-x-mark-20-solid"
-                            :padded="false" @click="q = ''" />
-                    </template>
-                </UInput>
+
+
+        <section class="p-8 first game" data-aos="fade-down" data-aos-easing="linear" data-aos-duration="800">
+
+            <div class="games_title">
+                <div class="title">
+                    <h1 class="underline">Encuentra tu juego!</h1>
+                    <UInput v-model="q" name="q" placeholder="Buscar en Tienda..."
+                        icon="i-heroicons-magnifying-glass-20-solid" autocomplete="off"
+                        :ui="{ icon: { trailing: { pointer: '' } } }">
+                        <template #trailing>
+                            <UButton v-show="q !== ''" color="gray" variant="link" icon="i-heroicons-x-mark-20-solid"
+                                :padded="false" @click="q = ''" />
+                        </template>
+                    </UInput>
+                </div>
+
+                <div class="filters flex gap-8 ">
+                    <USelectMenu class="w-96" v-model="labels" by="id" name="labels" :options="options" option-attribute="name"
+                        multiple creatable show-create-option-when="always" placeholder="Filtrar" />
+                </div>
+
             </div>
 
-        </div>
+            <div v-if="error">{{ error }}</div>
+            <div v-else class="games">
+                <GameItem v-for="(game, index) in visibleFilteredGames" :key="index" :game="game" :count="index" />
+            </div>
 
-        <section class="games" data-aos="fade-down" data-aos-easing="linear" data-aos-duration="800">
-            <GameItem 
-            v-for="(game, index) in data.results" 
-            :key="index" 
-            :game="game" 
-            :count="index" />
+            <div class="btn_show flex gap-4 pr-16 justify-end">
+                <UButton @click="loadMoreGames" label="Ver más"></UButton>
+            </div>
+
         </section>
-
 
     </div>
 </template>
 
-<script setup>
+<script setup lang="ts">
 
 const q = ref('')
 const data = ref({ results: [] });
 const error = ref(null);
+const visibleGames = ref(6);
 
 const fetchData = async () => {
     try {
@@ -103,10 +115,62 @@ onMounted(() => {
 
 const filteredGames = computed(() => {
     if (!data.value.results) return [];
-    return data.value.results.filter(game => 
+    return data.value.results.filter(game =>
         game.name.toLowerCase().includes(q.value.toLowerCase())
     );
 });
+
+const visibleFilteredGames = computed(() => {
+    return filteredGames.value.slice(0, visibleGames.value);
+});
+
+const loadMoreGames = () => {
+    visibleGames.value += 6;
+};
+const closeMoreGames = () => {
+    visibleGames.value -= 6;
+};
+
+//filters
+
+const options = ref([
+    { id: 1, name: 'New' },
+    { id: 2, name: 'Free To Play' },
+    { id: 3, name: 'duplicate' },
+    { id: 4, name: 'enhancement' },
+    { id: 5, name: 'good first issue' },
+    { id: 6, name: 'help wanted' },
+    { id: 7, name: 'invalid' },
+    { id: 8, name: 'question' },
+    { id: 9, name: 'wontfix' }
+])
+
+const selected = ref([])
+
+const labels = computed({
+    get: () => selected.value,
+    set: async (labels) => {
+        const promises = labels.map(async (label) => {
+            if (label.id) {
+                return label
+            }
+
+            // In a real app, you would make an API call to create the label
+            const response = {
+                id: options.value.length + 1,
+                name: label.name
+            }
+
+            options.value.push(response)
+
+            return response
+        })
+
+        selected.value = await Promise.all(promises)
+    }
+})
+
+
 
 
 // export default {
@@ -173,7 +237,6 @@ const filteredGames = computed(() => {
 
 
 <style lang="postcss">
-
 .tiendaHero {
     display: flex;
     flex-direction: column;
@@ -184,6 +247,7 @@ const filteredGames = computed(() => {
     .heroDescription {
         display: flex;
         gap: 2rem;
+        
 
         .heroText {
             display: flex;
@@ -235,8 +299,20 @@ const filteredGames = computed(() => {
         align-items: center;
         gap: 4rem;
     }
+}
 
+.games_title {
+    display: flex;
+    flex-direction: column;
+    padding: 4rem;
+    gap: 2rem;
 
+    .title {
+        display: flex;
+        gap: 2rem;
+        align-items: center;
+        justify-content: space-between;
+    }
 }
 
 .PriceTag {
@@ -266,8 +342,15 @@ const filteredGames = computed(() => {
 }
 
 @media (max-width: 480px) {
+    tiendaHero{
+        padding: 1rem;
+    }
     .games {
         grid-template-columns: 1fr;
+    }
+
+    .heroDescription{
+        flex-direction: column
     }
 }
 </style>

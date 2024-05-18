@@ -2,7 +2,7 @@
     <div class="GameItem">
         <img :src="game.background_image" :alt="game.name">
         <div class="GameItemText">
-            <h1>{{ game.name }}</h1>
+            <h2>{{ game.name }}</h2>
             <div class="PriceTag">
 
                 <span class="discount">20%</span>
@@ -16,7 +16,7 @@
     </div>
 </template>
 
-<script setup>
+<script setup lang="ts">
 
     const props = defineProps({
         game: {
