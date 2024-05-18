@@ -67,7 +67,11 @@
         </div>
 
         <section class="games" data-aos="fade-down" data-aos-easing="linear" data-aos-duration="800">
-            <GameItem v-for="(game, index) in data.results" :key="index" :game="game" :count="index" />
+            <GameItem 
+            v-for="(game, index) in data.results" 
+            :key="index" 
+            :game="game" 
+            :count="index" />
         </section>
 
 
@@ -77,11 +81,32 @@
 <script setup>
 
 const q = ref('')
+const data = ref({ results: [] });
+const error = ref(null);
 
-const { data } = await useFetch('https://api.rawg.io/api/games?key=2307b45a5fa04aee8510128079fc4871', {
-    lazy: true,
-    server: false
-})
+const fetchData = async () => {
+    try {
+        const response = await fetch('https://api.rawg.io/api/games?key=d45f1e8e88654d059e56f179e27d9327');
+        if (!response.ok) {
+            throw new Error('Failed to fetch data');
+        }
+        const jsonData = await response.json();
+        data.value = jsonData;
+    } catch (err) {
+        error.value = err.message;
+    }
+};
+
+onMounted(() => {
+    fetchData();
+});
+
+const filteredGames = computed(() => {
+    if (!data.value.results) return [];
+    return data.value.results.filter(game => 
+        game.name.toLowerCase().includes(q.value.toLowerCase())
+    );
+});
 
 
 // export default {
@@ -148,6 +173,7 @@ const { data } = await useFetch('https://api.rawg.io/api/games?key=2307b45a5fa04
 
 
 <style lang="postcss">
+
 .tiendaHero {
     display: flex;
     flex-direction: column;
