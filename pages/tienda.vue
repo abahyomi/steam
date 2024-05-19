@@ -69,8 +69,9 @@
                 </div>
 
                 <div class="filters flex gap-8 ">
-                    <USelectMenu class="w-96" v-model="labels" by="id" name="labels" :options="options" option-attribute="name"
-                        multiple creatable show-create-option-when="always" placeholder="Filtrar" />
+                    <USelectMenu class="w-96" v-model="labels" by="id" name="labels" :options="options"
+                        option-attribute="name" multiple creatable show-create-option-when="always"
+                        placeholder="Filtrar" />
                 </div>
 
             </div>
@@ -82,6 +83,18 @@
 
             <div class="btn_show flex gap-4 pr-16 justify-end">
                 <UButton @click="loadMoreGames" label="Ver más"></UButton>
+            </div>
+
+        </section>
+
+        <section class="banners p-12">
+            <h1 class="p-4" data-aos="fade-down" data-aos-easing="linear" data-aos-duration="800">Recomendaciones
+                personalizadas
+            </h1>
+
+            <div class="recomendaciones flex flex-col gap-4">
+                <GameBanner v-for="(game, index) in recommendedGames" :key="index" :game="game"
+                    :count="index" />
             </div>
 
         </section>
@@ -130,6 +143,50 @@ const loadMoreGames = () => {
 const closeMoreGames = () => {
     visibleGames.value -= 6;
 };
+
+
+//recomendados
+const recommendedGames = ref([]);
+
+const fetchRecommendedGames = async () => {
+    try {
+        const response = await fetch('https://api.rawg.io/api/games?key=d45f1e8e88654d059e56f179e27d9327');
+        if (!response.ok) {
+            throw new Error('Failed to fetch data');
+        }
+        const jsonData = await response.json();
+        const games = jsonData.results;
+        // Seleccionar aleatoriamente algunos juegos para mostrar
+        const randomGames = getRandomGames(games, 3); // Obtener 3 juegos aleatorios
+        recommendedGames.value = randomGames;
+    } catch (error) {
+        console.error('Error fetching recommended games:', error);
+    }
+};
+
+const getRandomGames = (games, count) => {
+    // Si hay menos juegos que la cantidad solicitada, devolver todos los juegos
+    if (games.length <= count) {
+        return games;
+    }
+    const randomGames = [];
+    const selectedIndices = new Set();
+    while (randomGames.length < count) {
+        const randomIndex = Math.floor(Math.random() * games.length);
+        if (!selectedIndices.has(randomIndex)) {
+            randomGames.push(games[randomIndex]);
+            selectedIndices.add(randomIndex);
+        }
+    }
+    return randomGames;
+};
+
+onMounted(() => {
+    fetchRecommendedGames();
+});
+
+
+
 
 //filters
 
@@ -247,7 +304,7 @@ const labels = computed({
     .heroDescription {
         display: flex;
         gap: 2rem;
-        
+
 
         .heroText {
             display: flex;
@@ -335,6 +392,10 @@ const labels = computed({
     padding: 2rem;
 }
 
+.game {
+    border-bottom: 1px solid white;
+}
+
 @media (max-width: 1100px) {
     .games {
         grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
@@ -342,14 +403,15 @@ const labels = computed({
 }
 
 @media (max-width: 480px) {
-    tiendaHero{
+    tiendaHero {
         padding: 1rem;
     }
+
     .games {
         grid-template-columns: 1fr;
     }
 
-    .heroDescription{
+    .heroDescription {
         flex-direction: column
     }
 }

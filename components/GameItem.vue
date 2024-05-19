@@ -4,13 +4,11 @@
         <div class="GameItemText">
             <h2>{{ game.name }}</h2>
             <div class="PriceTag">
-
                 <span class="discount">20%</span>
                 <div class="actualPrice">
                     <p class="smallText">59.99€</p>
                     <h1>47.99</h1>
                 </div>
-
             </div>
         </div>
     </div>
