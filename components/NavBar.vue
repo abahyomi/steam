@@ -1,6 +1,6 @@
 <template>
-    <nav data-aos="fade-down" data-aos-easing="linear" data-aos-duration="800">
-        <NuxtLink to="/"><img src="../public/Logo Steam.svg" alt=""></NuxtLink>
+    <nav >
+        <NuxtLink  to="/"><img src="../public/Logo Steam.svg" alt=""></NuxtLink>
         <ul>
             <li>
                 <NuxtLink to="/about">SteamCreate</NuxtLink>
