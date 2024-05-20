@@ -4,6 +4,9 @@ export default defineAppConfig({
       gray: 'cool',
       notifications: {
         position: 'top-40 bottom-auto'
+      },
+      overlay: {
+        background: 'bg-black',
       }
     }
   })

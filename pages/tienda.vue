@@ -46,7 +46,22 @@
 
 
                 <div class="imageDesc">
-                    <carrusel></carrusel>
+
+                    <UCarousel v-slot="{ item }" :items="items" :ui="{
+                        item: 'basis-full',
+                        container: 'rounded-lg'
+                    }" :prev-button="{
+                        color: 'gray',
+                        icon: 'i-heroicons-arrow-left-16-solid',
+                    }" :next-button="{
+                        color: 'gray',
+                        icon: 'i-heroicons-arrow-right-16-solid',
+                    }" arrows class="w-full mx-auto" indicators>
+
+                            <img :src="item.img.src" draggable="false">
+                     
+
+                    </UCarousel>
                 </div>
             </div>
         </section>
@@ -93,8 +108,7 @@
             </h1>
 
             <div class="recomendaciones flex flex-col gap-4">
-                <GameBanner v-for="(game, index) in recommendedGames" :key="index" :game="game"
-                    :count="index" />
+                <GameBanner v-for="(game, index) in recommendedGames" :key="index" :game="game" :count="index" />
             </div>
 
         </section>
@@ -104,7 +118,21 @@
 
 <script setup lang="ts">
 
+//Carrousel
+const items = [{
+    img: { src: '../tiendaHero01.gif' }
+},
+{
+    img: { src: '../tiendaHero.png' }
+},
+{
+    img: { src: '../tiendaHero02.png' }
+}
+]
+
 const q = ref('')
+
+//games API
 const data = ref({ results: [] });
 const error = ref(null);
 const visibleGames = ref(6);
@@ -211,15 +239,11 @@ const labels = computed({
             if (label.id) {
                 return label
             }
-
-            // In a real app, you would make an API call to create the label
             const response = {
                 id: options.value.length + 1,
                 name: label.name
             }
-
             options.value.push(response)
-
             return response
         })
 
@@ -333,7 +357,6 @@ const labels = computed({
             max-width: 1200px;
 
             img {
-                height: 500px;
                 border-top-left-radius: 4rem;
                 border-bottom-left-radius: 4rem;
             }

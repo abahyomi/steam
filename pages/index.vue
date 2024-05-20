@@ -3,7 +3,28 @@ import ArticleCard from '~/components/global/ArticleCard.vue';
     <div class="hero_index">
         <div class="carrousel" data-aos="fade-down" data-aos-easing="linear" data-aos-duration="800">
             <div class="box">
-                <carrusel></carrusel>
+                <UCarousel v-slot="{ item }" :items="items" :ui="{
+                    item: 'basis-full',
+                    container: 'rounded-lg'
+                }" :prev-button="{
+                    color: 'gray',
+                    icon: 'i-heroicons-arrow-left-16-solid',
+                }" :next-button="{
+                    color: 'gray',
+                    icon: 'i-heroicons-arrow-right-16-solid',
+                }" arrows class="w-full mx-auto" indicators>
+
+                    <div class="text-center relative">
+                        <NuxtLink :to="item.to">
+                            <img :src="item.img.src" class="w-full" draggable="false">
+                        </NuxtLink>
+                        <p class="text-5xl text text-white align-middle absolute bottom-9 w-full shadowtext font-medium">
+                            {{ index }}{{ item.name }}
+                        </p>
+                    </div>
+
+
+                </UCarousel>
             </div>
         </div>
 
@@ -30,7 +51,7 @@ import ArticleCard from '~/components/global/ArticleCard.vue';
                 </template>
             </UInput>
         </div>
-        
+
         <ArticleCard v-for="(article, index) in articles" :key="index" :article="article">
         </ArticleCard>
     </section>
@@ -64,6 +85,25 @@ const articles = ref([
         url: "https://picsum.photos/3000/1000"
     }
 ])
+
+//Carrousel
+
+const items = [{
+    name: 'Tienda',
+    to: '/tienda',
+    img: { src: '../tiendaHero01.gif' }
+},
+{
+    name: 'Comunidad',
+    to: '/comunidad',
+    img: { src: '../tiendaHero.png' }
+},
+{
+    name: 'SteamCreate',
+    to: '/tienda',
+    img: { src: '../tiendaHero02.png' }
+}
+]
 </script>
 
 <style lang="postcss">
@@ -76,13 +116,17 @@ const articles = ref([
         transition: 400ms;
 
 
-        .box{
+        .box {
             transition: 300ms;
+            .shadowtext{
+                text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+            }
         }
 
         img {
             border-radius: 32px;
             height: 700px;
+            width: 100vw;
             border-left: 8px solid #0047FF;
             border-right: 8px solid #0047FF;
             transition: 400ms;
@@ -90,9 +134,11 @@ const articles = ref([
 
         &:hover {
             cursor: pointer;
-            .box{
+
+            .box {
                 box-shadow: 1px 0px 121.4px 0px rgba(98, 134, 229, 0.37);
             }
+
             img {
                 border-left: 16px solid #0047FF;
                 border-right: 16px solid #0047FF;
@@ -122,7 +168,7 @@ const articles = ref([
     justify-content: center;
     width: 100%;
 
-    .title{
+    .title {
         display: flex;
         justify-content: space-between;
         align-items: center;
