@@ -20,7 +20,7 @@
             <div class="heroDescription" data-aos="fade-down" data-aos-easing="linear" data-aos-duration="800">
 
                 <div class="heroText">
-
+ 
                     <div class="top">
                         <h1 class="text-primary-500">Ready or Not</h1>
                         <p class="descPar">Ready or Not es un FPS táctico realista donde te pones en la piel de un
@@ -120,13 +120,13 @@
 
 //Carrousel
 const items = [{
-    img: { src: '../tiendaHero01.gif' }
+    img: { src: '../t01.jpg' }
 },
 {
-    img: { src: '../tiendaHero.png' }
+    img: { src: '../t02.jpg' }
 },
 {
-    img: { src: '../tiendaHero02.png' }
+    img: { src: '../t03.jpg' }
 }
 ]
 
@@ -217,7 +217,6 @@ onMounted(() => {
 
 
 //filters
-
 const options = ref([
     { id: 1, name: 'New' },
     { id: 2, name: 'Free To Play' },

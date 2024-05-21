@@ -3,7 +3,7 @@ import ArticleCard from '~/components/global/ArticleCard.vue';
     <div class="hero_index">
         <div class="carrousel" data-aos="fade-down" data-aos-easing="linear" data-aos-duration="800">
             <div class="box">
-                <UCarousel v-slot="{ item }" :items="items" :ui="{
+                <UCarousel ref="carouselRef" v-slot="{ item }" :items="items" :ui="{
                     item: 'basis-full',
                     container: 'rounded-lg'
                 }" :prev-button="{
@@ -18,12 +18,11 @@ import ArticleCard from '~/components/global/ArticleCard.vue';
                         <NuxtLink :to="item.to">
                             <img :src="item.img.src" class="w-full" draggable="false">
                         </NuxtLink>
-                        <p class="text-5xl text text-white align-middle absolute bottom-9 w-full shadowtext font-medium">
+                        <p
+                            class="text-5xl text text-white align-middle absolute bottom-9 w-full shadowtext font-medium">
                             {{ index }}{{ item.name }}
                         </p>
                     </div>
-
-
                 </UCarousel>
             </div>
         </div>
@@ -52,8 +51,10 @@ import ArticleCard from '~/components/global/ArticleCard.vue';
             </UInput>
         </div>
 
-        <ArticleCard v-for="(article, index) in articles" :key="index" :article="article">
-        </ArticleCard>
+        <section class="container cards-section" v-if="data.results != null">
+
+            <noticiasCard v-for="(game, index) in data.results" :key="index" :game="game" :count="index" />
+        </section>
     </section>
 
 
@@ -86,24 +87,45 @@ const articles = ref([
     }
 ])
 
+const carouselRef = ref()
+
+onMounted(() => {
+    setInterval(() => {
+        if (!carouselRef.value) return
+
+        if (carouselRef.value.page === carouselRef.value.pages) {
+            return carouselRef.value.select(0)
+        }
+
+        carouselRef.value.next()
+    }, 3500)
+})
+
 //Carrousel
 
 const items = [{
     name: 'Tienda',
     to: '/tienda',
-    img: { src: '../tiendaHero01.gif' }
+    img: { src: '../tiendaHero01v.gif' }
 },
 {
     name: 'Comunidad',
     to: '/comunidad',
-    img: { src: '../tiendaHero.png' }
+    img: { src: '../tienda03.webp' }
 },
 {
     name: 'SteamCreate',
     to: '/tienda',
-    img: { src: '../tiendaHero02.png' }
+    img: { src: '../tiendaHero01.gif' }
 }
 ]
+
+// Cards
+
+const { data } = useFetch('https://api.rawg.io/api/games?key=d45f1e8e88654d059e56f179e27d9327')
+
+
+
 </script>
 
 <style lang="postcss">
@@ -118,7 +140,8 @@ const items = [{
 
         .box {
             transition: 300ms;
-            .shadowtext{
+
+            .shadowtext {
                 text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
             }
         }
@@ -161,12 +184,9 @@ const items = [{
 }
 
 .cards-section {
-    padding: 2rem 4rem;
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
-    justify-content: center;
-    width: 100%;
+
 
     .title {
         display: flex;
