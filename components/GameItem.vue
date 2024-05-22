@@ -1,32 +1,34 @@
 <template>
-    <div class="GameItem">
-        <img :src="game.background_image" :alt="game.name">
-        <div class="GameItemText">
-            <h2>{{ game.name }}</h2>
-            <div class="PriceTag">
-                <span class="discount">20%</span>
-                <div class="actualPrice">
-                    <p class="smallText">59.99€</p>
-                    <h1>47.99</h1>
+    <NuxtLink :to="`/gamesdet/${game.id}`">
+        <div class="GameItem">
+            <img :src="game.background_image" :alt="game.name">
+            <div class="GameItemText">
+                <h2>{{ game.name }}</h2>
+                <div class="PriceTag">
+                    <span class="discount">20%</span>
+                    <div class="actualPrice">
+                        <p class="smallText">59.99€</p>
+                        <h1>47.99</h1>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
+    </NuxtLink>
 </template>
 
 <script setup lang="ts">
 
-    const props = defineProps({
-        game: {
-            type: Object,
-            required: false
-        },
-        count: {
-            type: Number,
-        }
-    });
-    const { game } = props;
-    const { count } = props;
+const props = defineProps({
+    game: {
+        type: Object,
+        required: false
+    },
+    count: {
+        type: Number,
+    }
+});
+const { game } = props;
+const { count } = props;
 
 </script>
 
