@@ -71,7 +71,4 @@
 </template>
 
 <style lang="postcss">
-p {
-    @apply text-[--color-primary];
-}
 </style>

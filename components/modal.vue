@@ -19,7 +19,7 @@
 
                     <div class="buttons">
                         <UButton class="w-36 justify-center p-3" color="white"  @click.prevent="handleCancel">Cancelar</UButton>
-                        <UButton class="w-36 justify-center p-3 text-white"  type="submit">Iniciar Sesión</UButton>
+                        <UButton class="w-36 justify-center p-3 text-white"  type="submit" label="Iniciar sesión"></UButton>
 
                     </div>
                 </div>
