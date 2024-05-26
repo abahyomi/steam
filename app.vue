@@ -16,6 +16,7 @@
   color: #fff;
   font-family: Poppins;
   object-fit: cover;
+  /* border: 1px solid tomato; */
 }
 
 .body {

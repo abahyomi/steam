@@ -11,9 +11,6 @@
             <li>
                 <NuxtLink to="/comunidad">Comunidad</NuxtLink>
             </li>
-            <li>
-                <NuxtLink to="/about">Soporte</NuxtLink>
-            </li>
         </ul>
 
         <div class="right_header">
