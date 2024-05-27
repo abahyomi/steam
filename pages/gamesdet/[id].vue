@@ -199,10 +199,15 @@
     }
 }
 
-.galeriaDetalle {}
+.galeriaDetalle {
+
+img{
+    width: 100vw;
+    max-height: 800px;
+}
+}
 
 .assets {
-
     .dlcTag {
         background-color: #111216;
         border-radius: 1rem;
@@ -220,17 +225,40 @@
 
 <script setup>
 
+const items = ref(null);
 const route = useRoute();
-const { data } = useFetch(`https://api.rawg.io/api/games/${route.params.id}?key=d45f1e8e88654d059e56f179e27d9327`)
+const { data } = useFetch (`https://api.rawg.io/api/games/${route.params.id}?key=d45f1e8e88654d059e56f179e27d9327`)
 
-const items = [{
-    img: { src: '../t01.jpg' }
-},
-{
-    img: { src: '../t02.jpg' }
-},
-{
-    img: { src: '../t03.jpg' }
-}
-]
+
+//const{ screenshots } = useFetch(`https://api.rawg.io/api/games/${route.params.id}/screenshots?key=d45f1e8e88654d059e56f179e27d9327`)
+
+const fetchData = async () => {
+    try {
+        const response = await fetch(`https://api.rawg.io/api/games/${route.params.id}/screenshots?key=d45f1e8e88654d059e56f179e27d9327`);
+        if (!response.ok) {
+            throw new Error('Failed to fetch data');
+        }
+        const jsonData = await response.json();
+        console.log(jsonData)
+        items.value = [{
+            img: { src:  jsonData.results[0].image }
+        },
+        {
+            img: { src:  jsonData.results[1].image }
+        },
+        {
+            img: { src:  jsonData.results[2].image }
+        }
+        ];
+
+    } catch (err) {
+        error.value = err.message;
+    }
+};
+
+onMounted(() => {
+    fetchData();
+});
+
+
 </script>

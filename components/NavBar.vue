@@ -1,6 +1,6 @@
 <template>
-    <nav >
-        <NuxtLink  to="/"><img src="../public/Logo Steam.svg" alt=""></NuxtLink>
+    <nav>
+        <NuxtLink to="/"><img src="../public/Logo Steam.svg" alt=""></NuxtLink>
         <ul>
             <li>
                 <NuxtLink to="/about">SteamCreate</NuxtLink>
@@ -13,16 +13,17 @@
             </li>
         </ul>
 
-        <div class="right_header">
+        <div class="right_header flex items-center justify-center">
             <UButton label="Installar" @click="isOpen = true" />
 
             <UModal v-model="isOpen" :overlay="true">
                 <div class="p-6 flex flex-col gap-4 self-center">
                     <h3>¿Quieres instalar Steam en tu ordenador?</h3>
                     <div class="flex gap-4">
-                        <UButton @click="isOpen = false" class="w-36 justify-center" color="white" variant="solid">No</UButton>
+                        <UButton @click="isOpen = false" class="w-36 justify-center" color="white" variant="solid">No
+                        </UButton>
                         <UButton class="w-36 justify-center p-4 text-white" label="Sí"
-                            @click="toast.add({ timeout: 3000, title: 'Steam instalado correctamente!' }), isOpen=false">
+                            @click="toast.add({ timeout: 3000, title: 'Steam instalado correctamente!' }), isOpen = false">
                         </UButton>
                     </div>
                 </div>
@@ -30,8 +31,13 @@
             <button v-if="!logged && !modalActive" @click="modalActive = !modalActive">
                 Iniciar sesión
             </button>
-            <div v-else-if="!modalActive" class="user" @click="panelActive = !panelActive">
-                <Icon name="ph:user" size="1.2em" color="white" />
+            <div v-else-if="!modalActive" class="userCard flex items-center gap-6" @click="panelActive = !panelActive">
+                <div class="dropdow flex items-center gap-4">
+                    <h3>Mateo</h3>
+                    <div class="user"><img src="/pfpic.png" alt=""></div>
+                </div>
+
+                <Icon name="ic:outline-shopping-cart" />
             </div>
             <div class="panel" v-show="panelActive">
                 <ul>
@@ -99,8 +105,6 @@ nav {
 
 .user {
     @apply w-10 h-10 rounded-full;
-    background-color: beige;
-    position: relative;
 
     &:hover {
         cursor: pointer

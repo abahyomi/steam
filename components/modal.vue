@@ -8,7 +8,7 @@
                     <div class="nameTag">
                         <label class="text-black" for="name">Name</label>
                         <input class="bg-slate-950 p-2 text-white rounded-lg" type="text" v-model="formData.name"
-                            id="name" placeholder="eg. John98" />
+                            id="name" placeholder="eg. johnd" />
                     </div>
 
                     <div class="nameTag">
