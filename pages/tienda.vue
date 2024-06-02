@@ -40,7 +40,6 @@
                                 <h1>47.99</h1>
                             </div>
                         </div>
-                        <button>ver más</button>
                     </div>
                 </div>
 

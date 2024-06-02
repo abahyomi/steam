@@ -22,15 +22,15 @@
                 <div class="comprar flex gap-8">
 
                     <div class="PriceTag justify-end" data-aos="fade-right" data-aos-easing="linear"
-                    data-aos-duration="800">
-                    <span class="discount">20%</span>
-                    <div class="actualPrice">
-                        <p class="smallText">59.99€</p>
-                        <h1>47.99</h1>
+                        data-aos-duration="800">
+                        <span class="discount">20%</span>
+                        <div class="actualPrice">
+                            <p class="smallText">59.99€</p>
+                            <h1>47.99</h1>
+                        </div>
                     </div>
-                </div>
 
-                <UButton class="h-12" color="white">Añadir al carrito</UButton>
+                    <UButton class="h-12" color="white">Añadir al carrito</UButton>
 
                 </div>
 
@@ -38,20 +38,20 @@
             </div>
         </section>
 
-        <section class="assets gap-8 px-24 py-6 flex space items-start justify-between">
-
+        <section class="assets gap-8 px-24 py-6 mr-64 flex space items-start justify-between">
             <div class="dlc flex flex-col gap-4 max-w-3xl">
-                <h1>DlC´s</h1>
-                <p class="max-w-md">Los DlC`s son contenido adicional de los juegos de Steam, en ningún caso son una
+                <h1 data-aos="fade-right" data-aos-easing="linear" data-aos-duration="600">DlC´s</h1>
+                <p class="max-w-md" data-aos="fade-right" data-aos-easing="linear" data-aos-duration="600">Los DlC`s son
+                    contenido adicional de los juegos de Steam, en ningún caso son una
                     compra obligatoria. Aqui te ofreces la lista de DLC´s disponibles para {{ data.name }}</p>
-                <ul class="flex flex-col gap-4">
+                <ul class="flex flex-col gap-4" data-aos="fade-down" data-aos-easing="linear" data-aos-duration="800">
 
                     <div class="dlcTag flex items-center justify-between">
                         <li>DlC-01
                         </li>
 
-                        <div class="PriceTag justify-end" data-aos="fade-right" data-aos-easing="linear"
-                            data-aos-duration="800">
+                        <div class="PriceTag justify-end" data-aos="fade-down" data-aos-easing="linear"
+                            data-aos-duration="600">
                             <span class="discount">20%</span>
                             <div class="actualPrice">
                                 <p class="smallText">59.99€</p>
@@ -63,7 +63,7 @@
                         <li>DlC-02
                         </li>
 
-                        <div class="PriceTag justify-end" data-aos="fade-right" data-aos-easing="linear"
+                        <div class="PriceTag justify-end" data-aos="fade-down" data-aos-easing="linear"
                             data-aos-duration="800">
                             <span class="discount">10%</span>
                             <div class="actualPrice">
@@ -77,8 +77,8 @@
                         <li>DlC-03
                         </li>
 
-                        <div class="PriceTag justify-end" data-aos="fade-right" data-aos-easing="linear"
-                            data-aos-duration="800">
+                        <div class="PriceTag justify-end" data-aos="fade-down" data-aos-easing="linear"
+                            data-aos-duration="1000">
                             <span class="discount">45%</span>
                             <div class="actualPrice">
                                 <p class="smallText">69.99€</p>
@@ -91,7 +91,7 @@
                 </ul>
             </div>
 
-            <div class="caracteristica">
+            <div class="caracteristica" data-aos="fade-right" data-aos-easing="linear" data-aos-duration="600">
                 <h1 class="underline">Características</h1>
                 <ul class="flex flex-col">
                     <div class="carcTag">
@@ -104,17 +104,18 @@
                         </li>
                     </div>
                     <div class="caracTag">
-                        <li class="p-0 py-2" v-for="genre in data.genres" :key="genre.id">· Género: {{ genre.name }}</li>
+                        <li class="p-0 py-2" v-for="genre in data.genres" :key="genre.id">· Género: {{ genre.name }}
+                        </li>
                     </div>
                     <div class="caracTag">
-                        <li class="p-0 py-2"> · Almacenamiento Steam Cloud 
+                        <li class="p-0 py-2"> · Almacenamiento Steam Cloud
                         </li>
                     </div>
                 </ul>
             </div>
         </section>
 
-        <section class="carrousel px-24 py-16">
+        <section class="carrousel px-24 py-16" data-aos="fade-down" data-aos-easing="linear" data-aos-duration="600">
             <h1>Galería de {{ data.name }}</h1>
             <div class="galeriaDetalle">
                 <UCarousel v-slot="{ item }" :items="items" :ui="{
@@ -124,9 +125,9 @@
                     color: 'gray',
                     icon: 'i-heroicons-arrow-left-16-solid',
                 }" :next-button="{
-                        color: 'gray',
-                        icon: 'i-heroicons-arrow-right-16-solid',
-                    }" arrows class="w-full mx-auto" indicators>
+                    color: 'gray',
+                    icon: 'i-heroicons-arrow-right-16-solid',
+                }" arrows class="w-full mx-auto" indicators>
 
                     <img :src="item.img.src" draggable="false">
                 </UCarousel>
@@ -138,7 +139,7 @@
                 <h1 class="underline">Requerimientos del PC</h1>
                 <ul class="flex flex-col justify-start p-0">
                     <div class="carcTag">
-                        <li class="p-0 py-4">· Requiere un procesador 64-bit  y sistema operativo
+                        <li class="p-0 py-4">· Requiere un procesador 64-bit y sistema operativo
                         </li>
                     </div>
                     <div class="caracTag">
@@ -162,19 +163,27 @@
                         </li>
                     </div>
                     <div class="caracTag">
-                        <li class="p-0 py-2"> <b>· Alamacenamiento:</b> 60GB de alamacenamiento
+                        <li class="p-0 py-2"> <b>· Al  macenamiento:</b> 60GB de alamacenamiento
                         </li>
                     </div>
                 </ul>
             </div>
             <div class="info">
-                <h1>Sobre {{ data.name }}</h1>
+                <h1>Más sobre {{ data.name }}</h1>
             </div>
         </section>
     </div>
 
     <section class="reviews py-16 px-24">
         <h1>Reviews de los usuarios</h1>
+        <reviews> </reviews>
+    </section>
+
+    <section class="relacionados flex flex-col py-16 px-24 gap-16">
+        <h1>Juegos relacionados</h1>
+        <div class="gameRelacionados flex gap-24">
+            <GameItem v-for="(game, index) in recommendedGames" :key="index" :game="game" :count="index" />
+        </div>
     </section>
 
 
@@ -201,10 +210,10 @@
 
 .galeriaDetalle {
 
-img{
-    width: 100vw;
-    max-height: 800px;
-}
+    img {
+        width: 100vw;
+        max-height: 800px;
+    }
 }
 
 .assets {
@@ -227,7 +236,46 @@ img{
 
 const items = ref(null);
 const route = useRoute();
-const { data } = useFetch (`https://api.rawg.io/api/games/${route.params.id}?key=d45f1e8e88654d059e56f179e27d9327`)
+const { data } = useFetch(`https://api.rawg.io/api/games/${route.params.id}?key=d45f1e8e88654d059e56f179e27d9327`)
+
+const recommendedGames = ref([]);
+
+const fetchRecommendedGames = async () => {
+    try {
+        const response = await fetch('https://api.rawg.io/api/games?key=d45f1e8e88654d059e56f179e27d9327');
+        if (!response.ok) {
+            throw new Error('Failed to fetch data');
+        }
+        const jsonData = await response.json();
+        const games = jsonData.results;
+        // Seleccionar aleatoriamente algunos juegos para mostrar
+        const randomGames = getRandomGames(games, 3); // Obtener 3 juegos aleatorios
+        recommendedGames.value = randomGames;
+    } catch (error) {
+        console.error('Error fetching recommended games:', error);
+    }
+};
+
+const getRandomGames = (games, count) => {
+    // Si hay menos juegos que la cantidad solicitada, devolver todos los juegos
+    if (games.length <= count) {
+        return games;
+    }
+    const randomGames = [];
+    const selectedIndices = new Set();
+    while (randomGames.length < count) {
+        const randomIndex = Math.floor(Math.random() * games.length);
+        if (!selectedIndices.has(randomIndex)) {
+            randomGames.push(games[randomIndex]);
+            selectedIndices.add(randomIndex);
+        }
+    }
+    return randomGames;
+};
+
+onMounted(() => {
+    fetchRecommendedGames();
+});
 
 
 //const{ screenshots } = useFetch(`https://api.rawg.io/api/games/${route.params.id}/screenshots?key=d45f1e8e88654d059e56f179e27d9327`)
@@ -241,13 +289,16 @@ const fetchData = async () => {
         const jsonData = await response.json();
         console.log(jsonData)
         items.value = [{
-            img: { src:  jsonData.results[0].image }
+            img: { src: jsonData.results[0].image }
         },
         {
-            img: { src:  jsonData.results[1].image }
+            img: { src: jsonData.results[1].image }
         },
         {
-            img: { src:  jsonData.results[2].image }
+            img: { src: jsonData.results[2].image }
+        },
+        {
+            img: { src: jsonData.results[3].image }
         }
         ];
 

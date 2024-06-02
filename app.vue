@@ -14,6 +14,7 @@
 
 * {
   color: #fff;
+  /* border: 1px solid tomato; */
   font-family: Poppins;
   object-fit: cover;
   /* border: 1px solid tomato; */

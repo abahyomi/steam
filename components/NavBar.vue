@@ -8,9 +8,6 @@
             <li>
                 <NuxtLink to="/tienda">Tienda</NuxtLink>
             </li>
-            <li>
-                <NuxtLink to="/comunidad">Comunidad</NuxtLink>
-            </li>
         </ul>
 
         <div class="right_header flex items-center justify-center">
