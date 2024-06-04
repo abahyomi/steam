@@ -27,7 +27,7 @@
         </div>
 
         <div class="info" data-aos="fade-down" data-aos-easing="linear" data-aos-duration="600">
-            <h1 class="title text-8xl">{{ title }}
+            <h1 class="title text-5xl lg:text-8xl">{{ title }}
             </h1>
             <p class="text-white max-w-96" data-aos="fade-down" data-aos-easing="linear" data-aos-duration="800">Tu
                 plataforma definitiva para juegos y entretenimiento! Desde su lanzamiento en 2003,
@@ -64,7 +64,10 @@
             <div class="titleLine py-4">
                 <h1>Proximamente</h1>
             </div>
-            <noticiasCard v-for="(game, index) in recommendedGames" :key="index" :game="game" :count="index" />
+
+            <div class="noticiasContainer">
+                <noticiasCard v-for="(game, index) in recommendedGames" :key="index" :game="game" :count="index" />
+            </div>
 
             <div class="titleLine py-4">
                 <h1>Hoy</h1>
@@ -85,39 +88,15 @@
     </section>
 
 
-    <section class="moreValve">
-        <h1 class="py-16 px-24">Otros Servicios</h1>
+    <section class="moreValve flex flex-col ">
+        <h1 class="py-6 px-12  md:py-16 px-24">Otros Servicios</h1>
 
-        <div class="bannerMore">
-
-            <div class="bannerImg">
-                <img class="max-w-5xl-" src="/public/valveindex.jpg" alt="">
-            </div>
-
-            <div class="bannerInfo flex flex-col gap-12 p-8 max-w-2xl">
-                <div class="bannerText flex flex-col gap-4">
-                    <h1 class="text-6xl">Valve Index</h1>
-                    <p>Las Valve Index son un avanzado sistema de realidad virtual desarrollado por Valve. Ofrecen una
-                        experiencia
-                        inmersiva con pantallas de alta resolución, una tasa de refresco de hasta 144 Hz, y un amplio
-                        campo
-                        de
-                        visión. Incluyen controladores ergonómicos que permiten un seguimiento preciso de los
-                        movimientos de
-                        las
-                        manos y dedos, proporcionando una interacción natural y detallada en entornos virtuales.
-                        Diseñadas
-                        para
-                        ofrecer comodidad y rendimiento superior, las Valve Index son una opción destacada para los
-                        entusiastas
-                        de
-                        la realidad virtual que buscan una experiencia de alta calidad.</p>
-                </div>
-                <UButton class="max-w-24 items-center justify-center" label="Ir a la web"></UButton>
-            </div>
-
-
+        <div class="contenedorServ flex flex-col gap-8">
+            <serviciosBanner v-for="(service, index) in services" :key="index" :service="service"
+                :imagePosition="index % 2 === 0 ? 'left' : 'right'">
+            </serviciosBanner>
         </div>
+
     </section>
 
 
@@ -127,31 +106,8 @@
 import { ref } from 'vue'
 const title = ref('Bienvenido a Steam')
 
-const articles = ref([
-    {
-        id: 1,
-        title: "Artículo 1",
-        url: "https://picsum.photos/3000/1000"
-    },
-    {
-        id: 2,
-        title: "Artículo 2",
-        url: "https://picsum.photos/3000/1000"
-    },
-    {
-        id: 3,
-        title: "Artículo 3",
-        url: "https://picsum.photos/3000/1000"
-    },
-    {
-        id: 4,
-        title: "Artículo 4",
-        url: "https://picsum.photos/3000/1000"
-    }
-])
-
+//Carrousel
 const carouselRef = ref()
-
 onMounted(() => {
     setInterval(() => {
         if (!carouselRef.value) return
@@ -163,8 +119,6 @@ onMounted(() => {
         carouselRef.value.next()
     }, 3500)
 })
-
-//Carrousel
 
 const items = [{
     name: 'Tienda',
@@ -180,7 +134,6 @@ const items = [{
 
 
 // CardsRight
-
 const q = ref('')
 const data = ref({ results: [] });
 
@@ -223,11 +176,7 @@ const closeMoreGames = () => {
 };
 
 
-
-
-
 // CardsLeft
-
 const recommendedGames = ref([]);
 
 const fetchRecommendedGames = async () => {
@@ -268,27 +217,35 @@ onMounted(() => {
 });
 
 
+//Servicios
+
+const services = ref([
+    {
+        id: 1,
+        title: "Valve Index",
+        desc: "Las Valve Index son un avanzado sistema de realidad virtual desarrollado por Valve. Ofrecen una experiencia inmersiva con pantallas de alta resolución, una tasa de refresco de hasta 144 Hz, y un amplio campo de visión. Incluyen controladores ergonómicos que permiten un seguimiento preciso de los movimientos de las manos y dedos, proporcionando una interacción natural y detallada en entornos virtuales. Diseñadas para ofrecer comodidad y rendimiento superior, las Valve Index son una opción destacada para los entusiastas de la realidad virtual que buscan una experiencia de alta calidad.",
+        src: "valveindex.jpg"
+    },
+    {
+        id: 2,
+        title: "Steam Deck",
+        desc: "El Steam Deck es una consola portátil desarrollada por Valve que permite jugar a juegos de PC en cualquier lugar. Equipada con un hardware potente, incluye una pantalla táctil de 7 pulgadas, un procesador AMD personalizado, y controles integrados como joysticks, botones y trackpads. El dispositivo ejecuta SteamOS, una versión de Linux optimizada para juegos, y ofrece acceso completo a la biblioteca de Steam. Con su diseño ergonómico y capacidad para conectar periféricos y monitores externos, el Steam Deck combina la versatilidad de una PC con la comodidad de una consola portátil, ofreciendo una experiencia de juego flexible y de alta calidad.",
+        src: "SteamDeck.jpg"
+    },
+])
+
+const servicesConfig = ref([
+    {
+        imagePosition: 'left'
+    },
+    {
+        imagePosition: 'right'
+    }
+]);
 
 </script>
 
 <style lang="postcss">
-.moreValve{
-.bannerMore {
-    display: flex;
-    gap: 4rem;
-
-    .bannerImg{
-        img{
-            max-width: 1000px;
-            border-top-right-radius: 120px;
-            border-bottom-right-radius: 120px;
-        }
-    }
-
-    
-}
-
-}
 .hero_index {
 
     .carrousel {
@@ -296,7 +253,6 @@ onMounted(() => {
         display: flex;
         justify-content: center;
         transition: 400ms;
-
 
         .box {
             transition: 300ms;
@@ -336,6 +292,10 @@ onMounted(() => {
         justify-content: space-between;
         border-bottom: 1px solid whitesmoke;
 
+        @media (max-width: 768px){
+            margin: .5rem 1rem;
+        }
+
         .display1 {
             font-size: 96px;
             font-weight: 600;
@@ -366,6 +326,7 @@ onMounted(() => {
 
     p {
         max-width: 40%;
+        
     }
 
 
@@ -374,8 +335,85 @@ onMounted(() => {
         justify-content: space-between;
         align-items: center;
         padding: 2rem 0rem;
+
+
     }
 }
 
 
+/* Responsive styles */
+@media (max-width: 1024px) {
+    .info {
+        flex-direction: column;
+        gap: 2rem;
+        margin: 0rem 0rem;
+        padding: 1rem;
+    }
+
+    .contenedorServ {
+        padding: 0.5rem;
+        gap: 4px;
+    }
+}
+
+@media (max-width: 768px) {
+    .contenedorServ {
+        padding: 0.25rem;
+        gap: 2px;
+    }
+}
+
+@media (max-width: 480px) {
+    .contenedorServ {
+        padding: 0.125rem;
+        gap: 1px;
+    }
+}
+
+.noticiasContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+    padding: 1rem;
+    width: 100%;
+}
+
+/* Responsive styles */
+@media (max-width: 1024px) {
+    .noticiasContainer {
+        padding: 0.5rem;
+        gap: 0.5rem;
+    }
+
+    .cards-section {
+        padding: 2rem;
+
+        .title{
+            flex-direction: column;
+            align-items: start;
+            gap: 2rem;
+
+            p{
+                max-width: 100%;
+            }
+
+        
+        }
+    }
+}
+
+@media (max-width: 768px) {
+    .noticiasContainer {
+        padding: 0.25rem;
+        gap: 0.25rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .noticiasContainer {
+        padding: 0.125rem;
+        gap: 0.125rem;
+    }
+}
 </style>

@@ -80,6 +80,13 @@ const handleCancel = () => {
         gap: 2rem;
         box-shadow: 1px 0px 121.4px 0px rgba(98, 134, 229, 0.77);
         overflow: hidden;
+
+        @media (max-width: 728px) {
+        max-width: 90vw;
+        border-radius: 24px;
+        padding: 4rem 1rem;
+        gap: 1rem;
+}
     }
 
 }
@@ -97,4 +104,13 @@ const handleCancel = () => {
     display: flex;
     gap: 1rem;
 }
+
+
+@media (max-width: 1024px) {
+    .modal_overlay{
+        top: 101px;
+    }
+}
+
+
 </style>

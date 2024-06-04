@@ -1,35 +1,39 @@
 <template>
-<section class="footer">
-    <img src="../public/Logo Steam.svg" alt="">
-    <div class="footerLinks">
-        <ul>
-            <li></li>
-            <li></li>
-            <li></li>
-        </ul>
+    <section class="footer">
+        <div class="left flex gap-16">
+            <img src="../public/Logo Steam.svg" alt="">
 
-        <ul>
-            <span>contact us</span>
-            <li></li>
-            <li></li>
-        </ul>
-    </div>
+            <div class="footerLinks flex gap-8">
+                <ul class="flex flex-col">
+                    <li>About</li>
+                    <li>Works</li>
+                    <li>Support</li>
+                </ul>
 
-    <div class="right">
-        <span>©2024-copyright</span>
-
-        <div class="footerbtns">
-            <UButton color="white">Twitter</UButton>
-            <UButton color="white">Instagram</UButton>
+                <ul class="flex flex-col">
+                    <li>Contact</li>
+                    <li>Legal info</li>
+                    <li>Cookies</li>
+                </ul>
+            </div>
         </div>
-    </div>
-</section>
+
+
+        <div class="right flex flex-col gap-24 items-end">
+            <span>©2024-copyright</span>
+
+            <div class="footerbtns flex gap-6">
+                <UButton color="white">Twitter</UButton>
+                <UButton color="white">Instagram</UButton>
+            </div>
+        </div>
+    </section>
 </template>
 
 <script></script>
 
 <style>
-.footer{
+.footer {
     margin-top: 4rem;
     overflow: hidden;
     width: 100%;
@@ -40,9 +44,16 @@
     align-items: self-start;
     justify-content: space-between;
 
-    img{
+    .footerLinks {
+        li {
+            padding: 0;
+            margin-bottom: 1rem;
+        }
+    }
+
+    img {
         opacity: 70%;
-        height: 38px;
+        height: 28px;
     }
 }
 </style>

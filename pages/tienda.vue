@@ -91,12 +91,17 @@
             </div>
 
             <div v-if="error">{{ error }}</div>
-            <div v-else class="games">
+            <div v-else class="games" data-aos="fade-down" data-aos-easing="linear" data-aos-duration="800">
                 <GameItem v-for="(game, index) in visibleFilteredGames" :key="index" :game="game" :count="index" />
             </div>
 
-            <div class="btn_show flex gap-4 pr-16 justify-end">
-                <UButton @click="loadMoreGames" label="Ver más"></UButton>
+            <div class="btns flex justify-end gap-4 py-4">
+                <div class="btn_show flex gap-4">
+                    <UButton color="white" @click="closeMoreGames" label="Ver menos"></UButton>
+                </div>
+                <div class="btn_show flex gap-4">
+                    <UButton @click="loadMoreGames" label="Ver más"></UButton>
+                </div>
             </div>
 
         </section>
