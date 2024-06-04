@@ -49,14 +49,15 @@ const { count } = props;
 
 
     .GameItemText {
-        width: 500px;
+        width: 95%;
         padding: 1rem;
         display: flex;
         justify-content: space-between;
-        align-items: center;
+        align-items: start;
+        gap: .5rem;
 
         @media (max-width: 1135px) {
-            max-width: 400px;
+            max-width: 90vw;
         }
 
         .PriceTag {

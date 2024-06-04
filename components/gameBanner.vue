@@ -7,8 +7,8 @@
             <div class="info flex flex-col gap-8 justify-end text-end">
                 <h2 class="justify-end" data-aos="fade-right" data-aos-easing="linear" data-aos-duration="700">{{
                     game.name
-                    }}</h2>
-                    
+                }}</h2>
+
                 <div class="PriceTag justify-end" data-aos="fade-right" data-aos-easing="linear"
                     data-aos-duration="800">
 
@@ -52,7 +52,7 @@ const { count } = props;
     border-radius: 2rem;
     transition: 300ms;
 
-    @media (max-width:736px){
+    @media (max-width:736px) {
         flex-direction: column;
         align-items: center;
     }
@@ -61,16 +61,21 @@ const { count } = props;
         max-width: 40vw;
         max-height: 400px;
         border-radius: 2rem;
+        transition: 200ms;
 
-        @media (max-width:736px){
-     max-width: 80vw;
-    }
+        @media (max-width:736px) {
+            max-width: 75vw;
+        }
     }
 
     &:hover {
         cursor: pointer;
         background-color: #111216;
         transform: scale(101%);
+
+        img{
+            border-bottom: 4px solid #0047FF;
+        }
     }
 }
 </style>

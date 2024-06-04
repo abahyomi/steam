@@ -95,7 +95,7 @@
                 <GameItem v-for="(game, index) in visibleFilteredGames" :key="index" :game="game" :count="index" />
             </div>
 
-            <div class="btns flex justify-end gap-4 py-4">
+            <div class="btns flex justify-end gap-4 p-6">
                 <div class="btn_show flex gap-4">
                     <UButton color="white" @click="closeMoreGames" label="Ver menos"></UButton>
                 </div>
@@ -341,10 +341,10 @@ const labels = computed({
 
     .heroHead {
         @media (max-width: 1224px) {
+            padding-right: 0;
             h3 {
                 display: none
             }
-            
             h1{
                 order: -1;
             }
@@ -364,8 +364,6 @@ const labels = computed({
             display: flex;
             flex-direction: column;
             justify-content: space-between;
-
-
 
             .top {
                 display: flex;
@@ -395,14 +393,14 @@ const labels = computed({
             @media (max-width: 1224px) {
                 order: -1;
                 max-width: 100vw;
-                img{
-                    border-radius: 2rem;
-                }
             }
 
             img {
                 border-top-left-radius: 4rem;
                 border-bottom-left-radius: 4rem;
+                @media (max-width: 1224px) {
+                border-radius: 2rem;
+            }
             }
         }
     }

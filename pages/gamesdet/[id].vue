@@ -9,7 +9,7 @@
             <div class="gameHeroDet flex gap-24 justify-between" data-aos="fade-right" data-aos-easing="linear"
                 data-aos-duration="600">
                 <div class="title_dt flex flex-col gap-8">
-                    <h1 class="text-7xl font-semibold">{{ data.name }}</h1>
+                    <h1 class="text-4xl font-semibold md:text-6xl lg:text-7xl">{{ data.name }}</h1>
                     <div class="parrafo max-w-7xl">
                         <p class="text-teal-50" v-html="data.description"></p>
                     </div>
@@ -145,7 +145,7 @@
         </section>
     </div>
 
-    <section class="reviews py-16 px-24">
+    <section class="reviews py-6 px-8">
         <h1>Reviews de los usuarios</h1>
         <div class="reviews_container">
             <reviews></reviews>
@@ -154,7 +154,7 @@
         </div>
     </section>
 
-    <section class="relacionados flex flex-col lg:py-16 px-24 gap-16">
+    <section class="relacionados flex flex-col p-8 gap-4 lg:py-16 lg:px-24 lg:gap-16">
         <h1>Juegos relacionados</h1>
         <div class="gameRelacionados flex gap-24">
             <GameItem v-for="(game, index) in recommendedGames" :key="index" :game="game" :count="index" />
@@ -268,6 +268,10 @@ const shortDescription = computed(() => {
     grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
     gap: 1rem;
     padding: 1rem 0rem;
+
+    @media (max-width: 768px){
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    }
 }
 
 .assets .dlcTag {
