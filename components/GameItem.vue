@@ -3,7 +3,7 @@
         <div class="GameItem">
             <img :src="game.background_image" :alt="game.name">
             <div class="GameItemText">
-                <h2 class="text-1xl md:text-3xl">{{ game.name }}</h2>
+                <h2 class="text-xl md:text-3xl">{{ game.name }}</h2>
                 <div class="PriceTag">
                     <span class="discount">20%</span>
                     <div class="actualPrice">
@@ -42,7 +42,7 @@ const { count } = props;
 
     img {
         height: 365px;
-        width: 500px;
+        width: 90%;
         border-radius: 2rem;
         transition: 400ms;
     }
@@ -55,8 +55,8 @@ const { count } = props;
         justify-content: space-between;
         align-items: center;
 
-        @media (max-width: 1100px) {
-            max-width: 80vw;
+        @media (max-width: 1135px) {
+            max-width: 400px;
         }
 
         .PriceTag {

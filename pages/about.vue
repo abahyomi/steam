@@ -72,6 +72,17 @@
 
 <style lang="postcss">
 
+.img_create{
+    img{
+        transition: 300ms;
+        &:hover{
+            transform: scale(102%);
+            cursor: pointer;
+            filter: drop-shadow(0px 0px 103.2px rgba(255, 255, 255, 0.29));
+        }
+    }
+}
+
 @media (max-width: 1256px){
     .title_create{
         flex-direction: column;

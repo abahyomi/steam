@@ -482,6 +482,12 @@ const labels = computed({
     }
 }
 
+@media (max-width: 440px) {
+    .games {
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    }
+}
+
 @media (max-width: 480px) {
     tiendaHero {
         padding: 1rem;

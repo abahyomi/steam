@@ -36,9 +36,9 @@
           <h3>Mateo</h3>
           <div class="user"><img src="/pfpic.png" alt="Profile Picture"></div>
         </div>
-        <Icon name="ic:outline-shopping-cart" />
+
       </div>
-      <div class="panel" v-show="panelActive">
+      <div class="panel"   v-show="panelActive">
         <ul>
           <li>
             <NuxtLink to="/about">SteamCreate</NuxtLink>
@@ -112,7 +112,7 @@ nav {
       display: flex;
       flex-direction: column;
       position: absolute;
-      top: 96px;
+      top: 90px;
       right: 0;
       background: rgba(3, 3, 18, 0.95);
       width: 200px;
@@ -150,16 +150,23 @@ nav {
 
   .panel {
     position: absolute;
-    top: 64px;
+    top: 120px;
     right: 0;
     background: rgba(3, 3, 18, 0.95);
     width: 200px;
     border: 1px solid #e4ebfa;
     padding: 1rem;
     border-radius: 8px;
+    height: 200px;
+
+    @media (max-width:1024px){
+      top: 105px;
+    }
 
     ul {
       list-style: none;
+      display: flex;
+      flex-direction: column;
       padding: 0;
       margin: 0;
 
@@ -182,7 +189,7 @@ nav {
 
     .logo {
       img {
-        height: 36px;
+        height: 26px;
       }
     }
 
