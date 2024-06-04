@@ -13,17 +13,17 @@
                                 :padded="false" @click="q = ''" />
                         </template>
                     </UInput>
-                    <h1 class="display1">Tienda</h1>
+                    <h1 class="text-7xl lg:text-8xl">Tienda</h1>
                 </div>
             </div>
 
             <div class="heroDescription" data-aos="fade-down" data-aos-easing="linear" data-aos-duration="800">
 
                 <div class="heroText">
- 
+
                     <div class="top">
                         <h1 class="text-primary-500">Ready or Not</h1>
-                        <p class="descPar">Ready or Not es un FPS táctico realista donde te pones en la piel de un
+                        <p class="descPar mb-8">Ready or Not es un FPS táctico realista donde te pones en la piel de un
                             agente SWAT para completar misiones en situaciones hostiles e intensas, poniendo énfasis en
                             la comunicación del equipo, la planificación y la ejecución precisa. Ofrece personalización
                             de equipamiento, modo para un jugador y multijugador, y ha sido recibido positivamente por
@@ -57,8 +57,8 @@
                         icon: 'i-heroicons-arrow-right-16-solid',
                     }" arrows class="w-full mx-auto" indicators>
 
-                            <img :src="item.img.src" draggable="false">
-                     
+                        <img :src="item.img.src" draggable="false">
+
 
                     </UCarousel>
                 </div>
@@ -67,7 +67,7 @@
 
 
 
-        <section class="p-8 first game" data-aos="fade-down" data-aos-easing="linear" data-aos-duration="800">
+        <section class="p-2 md:p-4 first game" data-aos="fade-down" data-aos-easing="linear" data-aos-duration="800">
 
             <div class="games_title">
                 <div class="title">
@@ -328,15 +328,44 @@ const labels = computed({
     padding: 4rem 0rem 4rem 4rem;
     gap: 4rem;
 
+    @media (max-width: 1224px){
+        padding: 2rem;
+    }
+
+    @media (max-width: 736px){
+        padding: 1rem;
+        gap: 2rem;
+        border-bottom: 1px solid white;
+    }
+
+
+    .heroHead {
+        @media (max-width: 1224px) {
+            h3 {
+                display: none
+            }
+            
+            h1{
+                order: -1;
+            }
+        }
+    }
+
     .heroDescription {
         display: flex;
         gap: 2rem;
 
+        @media (max-width: 1224px) {
+            flex-direction: column;
+
+        }
 
         .heroText {
             display: flex;
             flex-direction: column;
             justify-content: space-between;
+
+
 
             .top {
                 display: flex;
@@ -353,11 +382,23 @@ const labels = computed({
         .descPar {
             max-width: 600px;
             margin-right: 4rem;
-            color: white
+            color: white;
+
+            @media (max-width: 736px){
+                margin-right:0;
+            }
         }
 
         .imageDesc {
-            max-width: 1200px;
+            max-width: 60vw;
+
+            @media (max-width: 1224px) {
+                order: -1;
+                max-width: 100vw;
+                img{
+                    border-radius: 2rem;
+                }
+            }
 
             img {
                 border-top-left-radius: 4rem;
@@ -381,6 +422,11 @@ const labels = computed({
         display: flex;
         align-items: center;
         gap: 4rem;
+
+        @media (max-width: 655px) {
+            flex-direction: column;
+            gap: 1rem;
+        }
     }
 }
 
@@ -389,6 +435,10 @@ const labels = computed({
     flex-direction: column;
     padding: 4rem;
     gap: 2rem;
+
+    @media (max-width:1020px){
+        padding: 1rem;
+    }
 
     .title {
         display: flex;
@@ -416,6 +466,10 @@ const labels = computed({
     grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
     gap: 1rem;
     padding: 2rem;
+
+    @media (max-width:1020px){
+        padding: 1rem;
+    }
 }
 
 .game {

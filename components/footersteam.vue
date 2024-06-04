@@ -18,8 +18,7 @@
             </div>
         </div>
 
-
-        <div class="right flex flex-col gap-24 items-end">
+        <div class="right flex flex-col gap-12 md:gap-24 items-end">
             <span>©2024-copyright</span>
 
             <div class="footerbtns flex gap-6">
@@ -30,30 +29,76 @@
     </section>
 </template>
 
-<script></script>
+<script>
+export default {
+  name: 'FooterSteam'
+};
+</script>
 
-<style>
+<style scoped>
 .footer {
     margin-top: 4rem;
     overflow: hidden;
     width: 100%;
-    height: 300px;
     padding: 4rem;
     border-top: 1px solid #D9D9D9;
     display: flex;
-    align-items: self-start;
+    flex-wrap: wrap;
     justify-content: space-between;
+    align-items: flex-start;
+}
 
-    .footerLinks {
-        li {
-            padding: 0;
-            margin-bottom: 1rem;
-        }
+.footerLinks {
+    display: flex;
+    gap: 2rem;
+    li {
+        padding: 0;
+        margin-bottom: 1rem;
+    }
+}
+
+img {
+    opacity: 70%;
+    height: 28px;
+}
+
+/* Media Queries for responsiveness */
+@media (max-width: 768px) {
+    .footer {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
     }
 
-    img {
-        opacity: 70%;
-        height: 28px;
+    .left, .right {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .footerLinks {
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    .footerLinks ul {
+        margin-bottom: 2rem;
+    }
+
+    .right {
+        margin-top: 2rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .footer {
+        padding: 2rem;
+    }
+
+    .footerbtns {
+        gap: 1rem;
     }
 }
 </style>

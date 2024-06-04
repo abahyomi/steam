@@ -52,10 +52,19 @@ const { count } = props;
     border-radius: 2rem;
     transition: 300ms;
 
+    @media (max-width:736px){
+        flex-direction: column;
+        align-items: center;
+    }
+
     img {
-        max-width: 1400px;
+        max-width: 40vw;
         max-height: 400px;
         border-radius: 2rem;
+
+        @media (max-width:736px){
+     max-width: 80vw;
+    }
     }
 
     &:hover {

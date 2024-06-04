@@ -14,7 +14,7 @@
                     modo competitivo.</p>
             </div>
 
-            <div class="infoPubli flex flex-col ">
+            <div class="infoPubli flex flex-col items-end ">
                 <p>{{ game.released }}</p>
                 <p>by Arma Co.</p>
             </div>

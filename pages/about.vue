@@ -1,8 +1,8 @@
 <template>
-    <div class="p-12">
+    <div class="p-4 md:p-12 lg:p-16">
 
-        <div class="title_create flex justify-between p-8 mb-14" data-aos="fade-down" data-aos-easing="linear" data-aos-duration="600" >
-            <h1  class="text-8xl font-medium">Bienvenido a <br>
+        <div class="title_create flex justify-between p-4 md:p-8 mb-14" data-aos="fade-down" data-aos-easing="linear" data-aos-duration="600" >
+            <h1  class="text-5xl md:text-6xl font-medium lg:text-8xl">Bienvenido a <br>
                 SteamCreate!</h1>
 
             <div class="acerca">
@@ -17,7 +17,7 @@
         </div>
 
         <div>
-            <div class="img_create flex justify-between gap-16 max-w-760px" data-aos="fade-down" data-aos-easing="linear" data-aos-duration="1000">
+            <div class="img_create flex flex-col justify-between gap-16 max-w-760px lg:flex-row" data-aos="fade-down" data-aos-easing="linear" data-aos-duration="1000">
                 <div class="flex flex-col gap-8">
                     <img src="../public/crear.png" alt="">
                     <div class="max-w-500 mx-auto">
@@ -71,4 +71,21 @@
 </template>
 
 <style lang="postcss">
+
+@media (max-width: 1256px){
+    .title_create{
+        flex-direction: column;
+        gap: 1rem;
+        margin-bottom: 1rem;
+    }
+}
+
+@media (max-width: 1024px){
+    .title_create{
+        flex-direction: column;
+        gap: 1rem;
+        margin-bottom: 1rem;
+    }
+}
+
 </style>
